@@ -42,4 +42,5 @@ class MultiApp:
 
 if __name__ == "__main__":
     app = MultiApp()
+    
     app.run()
