@@ -11,7 +11,7 @@ START = "2015-01-01"
 STOP = date.today().strftime("%Y-%m-%d")
 methods = ['Prophet', 'XGBoost']
 
-df = pd.read_csv(r'C:\Users\User\Documents\CAPSTONE\da_capstone_group3\Team3_App\data\database.csv')
+df = pd.read_csv('database.csv')
 
 def app():
     st.title("Forecast Page")
