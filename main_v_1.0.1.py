@@ -17,8 +17,8 @@ class MultiApp:
             'finder': pages.finder.app,
             'visualization': pages.visualization.app,
             'database': pages.database.app,
-            'forecast': pages.forecast.app}
-            }
+            'forecast': pages.forecast.app
+        }
     def run(self):
         with st.sidebar:
             app = option_menu(
