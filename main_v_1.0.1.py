@@ -38,8 +38,7 @@ class MultiApp:
             self.apps[app].app()  # Call the selected page's app function
         else:
             st.error("Page not found")
-                 
-if __name__ == "__main__":
-    app = MultiApp()
-    app.run()
+        if __name__ == "__main__":
+            app = MultiApp()
+            app.run()
 
