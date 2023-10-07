@@ -37,7 +37,8 @@ if app in self.apps:
     self.apps[app].app()  # Call the selected page's app function
 else:
     st.error("Page not found")
-
+    
+app = MultiApp()
 if __name__ == "__main__":
     app = MultiApp()
     
