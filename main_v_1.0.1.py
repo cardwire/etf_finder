@@ -9,6 +9,7 @@ st.set_page_config(
     page_icon=':chart_with_upwards_trend:',
     layout="wide",
     initial_sidebar_state="expanded")
+
 class MultiApp:
     def __init__(self):
         self.apps = {
@@ -16,8 +17,9 @@ class MultiApp:
             'finder': pages.finder.app,
             'visualization': pages.visualization.app,
             'database': pages.database.app,
-            'forecast': pages.forecast.app
-        }
+            'forecast': pages.forecast.app}
+
+    
     def run(self):
         with st.sidebar:
             app = option_menu(menu_title="Navigation", 
