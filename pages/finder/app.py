@@ -7,11 +7,9 @@ import seaborn as sns
 import missingno as msno
 
 def app():
-    try:
-        df = pd.read_csv('database.csv')
-    except FileNotFoundError:
-        st.error("Error: CSV file not found. Please check the file path.")
-        df = pd.DataFrame()
+   
+    df = pd.read_csv('database.csv')
+    df = pd.DataFrame()
     
     # Step 0: Define filter_set
     filter_set = df[['investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]
