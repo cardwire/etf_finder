@@ -18,27 +18,24 @@ class MultiApp:
             'database': pages.database.app,
             'forecast': pages.forecast.app
         }
-
     def run(self):
         with st.sidebar:
-            app = option_menu(            
-                menu_title="Navigation", 
+            app = option_menu(menu_title="Navigation", 
                 options=['home', 'finder', 'visualization', 'database', 'forecast'],
                 icons=['house-fill', 'search', 'bar-chart', 'table', 'calendar'],
-                menu_icon='chat-text-fill',
-                default_index=0,
+                menu_icon='chat-text-fill', default_index=0,
                 styles={
                     "container": {"padding": "5!important", "background_color": "white"},
                     "icon": {"color": "#CBD914", "font-size": "28px"},
                     "nav-link": {"color": "#CBD914", "font-size": "20px"},
                     "nav-link:hover": {"color": "black", "font-size": "22px"},
-                    "nav-link-selected": {"background-color": "#8F00FF", "font-size": "20px"},
-                }
-            )
-        if app in self.apps:
-            self.apps[app].app()  # Call the selected page's app function
-        else:
-            st.error("Page not found")
+                    "nav-link-selected": {"background-color": "#8F00FF", "font-size": "20px"}
+                
+              )
+    if app in self.apps:
+        self.apps[app].app()  # Call the selected page's app function
+    else:
+        st.error("Page not found")
 
 if __name__ == "__main__":
     app = MultiApp()
