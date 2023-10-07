@@ -38,8 +38,7 @@ if app in self.apps:
 else:
     st.error("Page not found")
     
-app = MultiApp()
-if __name__ == "__main__":
-    app = MultiApp()
-    
 app.run()
+if __name__ == "__main__":
+    
+  
