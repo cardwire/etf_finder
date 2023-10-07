@@ -31,14 +31,13 @@ class MultiApp:
             "nav-link": {"color": "#CBD914", "font-size": "20px"},
             "nav-link:hover": {"color": "black", "font-size": "22px"},
             "nav-link-selected": {"background-color": "#8F00FF", "font-size": "20px"}
- app = MultiApp()
-                        
-if app in self.apps:
-    self.apps[app].app()  # Call the selected page's app function
-else:
-    st.error("Page not found")
-    
-app.run()
+                    
+        if app in self.apps:
+            self.apps[app].app()  # Call the selected page's app function
+        else:
+            st.error("Page not found")
+
 if __name__ == "__main__":
-    
-  
+    app = MultiApp()
+    app.run()
+
