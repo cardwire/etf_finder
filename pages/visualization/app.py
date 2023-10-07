@@ -5,7 +5,7 @@ import plotly.express as px
 
 
 # load data
-df = pd.read_csv(r'C:\Users\User\Documents\CAPSTONE\da_capstone_group3\Team3_App\data\app_df1.csv')
+df = pd.read_csv('app_df1.csv')
 
 
 
