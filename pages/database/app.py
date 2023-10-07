@@ -4,7 +4,7 @@ import yahooquery as yq
 import plotly.express as px
 
 # Load data
-df = pd.read_csv(r'C:\Users\User\Documents\CAPSTONE\da_capstone_group3\Team3_App\data\database.csv')
+df = pd.read_csv('database.csv')
 t_list = df['ticker'].tolist()
 
 def get_holdings(selected_ticker):
