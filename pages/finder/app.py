@@ -8,7 +8,7 @@ import missingno as msno
 
 def app():
     try:
-        df = pd.read_csv(r'C:\Users\User\Documents\CAPSTONE\da_capstone_group3\Team3_App\data\database.csv')
+        df = pd.read_csv('database.csv')
     except FileNotFoundError:
         st.error("Error: CSV file not found. Please check the file path.")
         df = pd.DataFrame()
