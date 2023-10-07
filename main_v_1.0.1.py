@@ -20,9 +20,9 @@ class MultiApp:
             'forecast': pages.forecast.app}
 
     
-    def run(self):
-        with st.sidebar:
-            app = option_menu(menu_title="Navigation", 
+        def run(self):
+            with st.sidebar:
+                app = option_menu(menu_title="Navigation", 
                 options=['home', 'finder', 'visualization', 'database', 'forecast'],
                 icons=['house-fill', 'search', 'bar-chart', 'table', 'calendar'],
                 menu_icon='chat-text-fill', default_index=0,
