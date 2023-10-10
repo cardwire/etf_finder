@@ -1,11 +1,11 @@
-
 import streamlit as st
 import pandas as pd
 import yfinance as yf   
 from datetime import date
 from prophet import Prophet
 from prophet.plot import plot_plotly
-import matplotlib.pyplot as plt
+import matplotlib as mpl
+from matplotlib import pyplot as plt
 
 START = "2015-01-01"
 STOP = date.today().strftime("%Y-%m-%d")
