@@ -4,7 +4,6 @@ import streamlit_elements
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import missingno as msno
 
 def app():
    
