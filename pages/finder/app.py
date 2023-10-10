@@ -117,6 +117,7 @@ def app():
     st.write("Your Selection:")
     st.write(df_filtered.head())
 
+app()
 ''' st.write("Current Session State:")
     st.write(st.session_state)
 
