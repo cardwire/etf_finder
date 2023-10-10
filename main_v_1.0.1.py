@@ -4,8 +4,6 @@ import streamlit_option_menu
 from streamlit_option_menu import option_menu
 from streamlit_elements import elements, mui, html
 
-
-
 st.set_page_config(
     page_title='ETF-Master-2000',
     page_icon=':chart_with_upwards_trend:',
@@ -45,4 +43,3 @@ class MultiApp:
 if __name__ == "__main__":
     app = MultiApp()
     app.run()
-
