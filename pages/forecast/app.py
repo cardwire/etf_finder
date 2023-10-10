@@ -75,7 +75,7 @@ def app():
 
     # Update layout for components plot
     plt.savefig('none', transparent=True)  # Make the whole plot transparent
-    plt.set_facecolor('none', transparent=True)  # Make the subplot transparent
+    
 
     for comp in fig2.get_axes():
         comp.xaxis.label.set_color('white')
@@ -86,3 +86,4 @@ def app():
     st.pyplot(fig2)
 
 app()
+
