@@ -3,6 +3,11 @@ import streamlit as st
 import streamlit_option_menu
 from streamlit_option_menu import option_menu
 from streamlit_elements import elements, mui, html
+import pages.home.app
+import pages.finder.app
+import pages.visualization.app
+import pages.database.app
+import pages.forecast.app
 
 
 st.set_page_config(
