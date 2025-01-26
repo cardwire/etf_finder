@@ -27,10 +27,11 @@ def app():
     def fetch_etf_data(ticker):
         try:
             data = yf.Ticker(ticker)
-            return data
-        except Exception as e:
-            st.error(f"Error fetching data for {ticker}: {e}")
-            return None
+    return data
+        
+    except Exception as e:
+        st.error(f"Error fetching data for {ticker}: {e}")
+    return None
 
 
  # Fetch information for each ETF
