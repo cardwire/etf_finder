@@ -33,12 +33,11 @@ class MultiApp:
                 icons=['house-fill', 'search', 'bar-chart', 'table', 'calendar'],
                 menu_icon='chat-text-fill',
                 default_index=0,
-                styles={
-                    "container": {"padding": "5!important", "background_color": "white"},
+                styles={"container": {"padding": "5!important", "background_color": "white"},
                     "icon": {"color": "#CBD914", "font-size": "28px"},
                     "nav-link": {"color": "#CBD914", "font-size": "20px"},
                     "nav-link:hover": {"color": "black", "font-size": "22px"},
-                    "nav-link-selected": {"background-color": "#8F00FF", "font-size": "20px"},
+                    "nav-link-selected": {"background-color": "#8F00FF", "font-size": "20px"}
                 }
             )
         if app in self.apps:
