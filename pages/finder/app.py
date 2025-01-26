@@ -23,55 +23,7 @@ def app():
     ticker_list = [ticker.strip() for ticker in tickers.split(",")]
 
     
-    def get_ticker():
-        ticker = []
-        for i in range(len(df['ticker'])):
-            try:
-                tick = yf.Ticker(df['ticker'][i])
-                ticker.append(tick)
-            except:
-                pass
-        return ticker
-
-    
-
-
-    def get_info(ticker):
-        info = []
-        for i in range(len(ticker)):
-            try:
-                info.append(ticker[i].info)
-            except:
-                sleep(.01)
-                pass
-    return info
-
-    '''
-    
-    
-
-    try:
-        df = pd.read_csv('database.csv')
-    except FileNotFoundError:
-        st.error("Error: CSV file not found. Please check the file path.")
-        df = pd.DataFrame()
-   
-    
-    # Step 0: Define filter_set
-    filter_set = df[['investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]
-    df_target = df[['ticker', 'investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]    
-    df_filtered = df_target
-
-     '''
-
-    
-  #  st.title("ETF Finder")
-   # st.markdown('### __This is the ETF Finder Page__ ')   
-   # st.markdown(f'### __set the filters to select your ETFs__ ')
-    #st.markdown('__Note: all ETFs provide data on every filter. The number of ETFs that provide data on a specific filter is shown in this barplot__') 
-    
-  
-      # Function to fetch data for each ticker
+    # Function to fetch data for each ticker
     def fetch_etf_data(ticker):
         try:
             data = yf.Ticker(ticker)
@@ -80,7 +32,8 @@ def app():
             st.error(f"Error fetching data for {ticker}: {e}")
             return None
 
-    # Fetch information for each ETF
+
+ # Fetch information for each ETF
     st.sidebar.write("Click the button below to fetch ETF data.")
     if st.sidebar.button("Fetch Data"):
         st.write(f"Fetching data for: {', '.join(ticker_list)}")
@@ -110,6 +63,36 @@ def app():
                 st.plotly_chart(fig)
             else:
                 st.warning(f"No historical data available for {ticker}.")
+
+    
+    '''
+    
+    
+
+    try:
+        df = pd.read_csv('database.csv')
+    except FileNotFoundError:
+        st.error("Error: CSV file not found. Please check the file path.")
+        df = pd.DataFrame()
+   
+    
+    # Step 0: Define filter_set
+    filter_set = df[['investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]
+    df_target = df[['ticker', 'investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]    
+    df_filtered = df_target
+
+     '''
+
+    
+  #  st.title("ETF Finder")
+   # st.markdown('### __This is the ETF Finder Page__ ')   
+   # st.markdown(f'### __set the filters to select your ETFs__ ')
+    #st.markdown('__Note: all ETFs provide data on every filter. The number of ETFs that provide data on a specific filter is shown in this barplot__') 
+    
+  
+
+
+   
 
     # Step 1: Initialize session state for filters if not already present
     
