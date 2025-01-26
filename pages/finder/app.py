@@ -36,7 +36,7 @@ def app():
  # Fetch information for each ETF
     st.sidebar.write("Click the button below to fetch ETF data.")
     if st.sidebar.button("Fetch Data"):
-        st.markdown(f"Fetching data for: {'#, '.join(ticker_list)}")
+        st.markdown(f"Fetching data for: {', '.join(ticker_list)}")
 
         etf_data = {}
         for ticker in ticker_list:
@@ -44,8 +44,28 @@ def app():
             if etf:
                 etf_data[ticker] = {
                     "info": etf.info,
-                    "history": etf.history(period="1y"),
+                    "history": etf.history(period="max"),
+                    "yield5y" = etf.info['fiveYearAverageReturn']
+                    "yield3y" = etf.info['threeYearAverageReturn']
+                    "return_ytd" = etf.info['ytdReturn']
+                    "category" = etf.info['category']
+                    "totalAssets" = etf.info['totalAssets']
+                    "beta3y" = etf.info['beta3Year']
+                    "fundDescription" = etf.get_funds_data().description
+                    "eqHold" = etf.get_funds_data().equity_holdings
+                    "secWeights" = etf.get_funds_data().sector_weightings
+                    "topHolds" = etf.get_funds_data().top_holdings   
                 }
+
+
+  # Step 0: Define filter_set
+    investment_strategy =
+    filter_set = df[['investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]
+    df_target = df[['ticker', 'investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]    
+    df_filtered = df_target
+
+
+
         
         # Display information and visualizations
         for ticker, data in etf_data.items():
@@ -77,6 +97,7 @@ def app():
    
     
     # Step 0: Define filter_set
+    investment_strategy =
     filter_set = df[['investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]
     df_target = df[['ticker', 'investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]    
     df_filtered = df_target
