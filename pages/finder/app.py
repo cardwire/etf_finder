@@ -59,41 +59,30 @@ def app():
 
         
         # Display information and visualizations
-        for ticker, data in etf_data.items():
-            st.subheader(f"{ticker} Information")
-            st.write(data["info"])
+for ticker, data in etf_data.items():
+    st.subheader(f"{ticker} Information")
+    st.write(data["info"])
 
-            st.subheader(f"{ticker} Price Chart (1-Year)")
-            if not data["history"].empty:
-                fig = px.line(
-                    data["history"].reset_index(),
-                    x="Date",
-                    y="Close",
-                    title=f"{ticker} Closing Prices",
+    st.subheader(f"{ticker} Price Chart (1-Year)")
+    if not data["history"].empty:
+        fig = px.line(data["history"].reset_index(),
+                      x="Date",
+                      y="Close",
+                      title=f"{ticker} Closing Prices"
                 )
-                st.plotly_chart(fig)
+                
+        st.plotly_chart(fig)
             else:
                 st.warning(f"No historical data available for {ticker}.")
 
-    
-    '''
-    
-    
-
-    try:
-        df = pd.read_csv('database.csv')
-    except FileNotFoundError:
-        st.error("Error: CSV file not found. Please check the file path.")
-        df = pd.DataFrame()
+            try:
+                df = pd.read_csv('database.csv')
+            except FileNotFoundError:
+                st.error("Error: CSV file not found. Please check the file path.")
+                df = pd.DataFrame()
    
     
-    # Step 0: Define filter_set
-    investment_strategy =
-    filter_set = df[['investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]
-    df_target = df[['ticker', 'investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]    
-    df_filtered = df_target
 
-     '''
 
     
   #  st.title("ETF Finder")
