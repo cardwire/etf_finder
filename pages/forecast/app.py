@@ -85,5 +85,5 @@ def app():
 
     st.pyplot(fig2)
 
-app()
+
 
