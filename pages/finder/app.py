@@ -39,10 +39,10 @@ def app():
         st.markdown(f"Fetching data for: {', '.join(ticker_list)}")
 
     etf_data = {}
-        for ticker in ticker_list:
-            etf = fetch_etf_data(ticker)
-            if etf:
-                etf_data[ticker] = {
+    for ticker in ticker_list:
+        etf = fetch_etf_data(ticker)
+        if etf:
+            etf_data[ticker] = {
                     "info": etf.info,
                     "history": etf.history(period="max"),
                     "yield5y" = etf.info['fiveYearAverageReturn']
@@ -56,23 +56,20 @@ def app():
                     "secWeights" = etf.get_funds_data().sector_weightings
                     "topHolds" = etf.get_funds_data().top_holdings
                 }
-
-        
         # Display information and visualizations
-    for ticker, data in etf_data.items():
-        st.subheader(f"{ticker} Information")
-        st.write(data["info"])
-        st.subheader(f"{ticker} Price Chart (1-Year)")
+        for ticker, data in etf_data.items():
+            st.subheader(f"{ticker} Information")
+            st.write(data["info"])
+            st.subheader(f"{ticker} Price Chart (1-Year)")
     
-    if not data["history"].empty:
-        fig = px.line(data["history"].reset_index(),
-                      x="Date",
-                      y="Close",
-                      title=f"{ticker} Closing Prices"
-                     )
-                    st.plotly_chart(fig)
-    else:
-        st.warning(f"No historical data available for {ticker}.")
+        if not data["history"].empty:
+            fig = px.line(data["history"].reset_index(),
+            x="Date",
+            y="Close",
+            title=f"{ticker} Closing Prices")
+            st.plotly_chart(fig)
+        else:
+            st.warning(f"No historical data available for {ticker}.")
 
    
     # Step 1: Initialize session state for filters if not already present
@@ -92,12 +89,13 @@ def app():
     if 'df_filtered' not in st.session_state:
         st.session_state.df_filtered = df_filtered
 
-    # Step 2: Create Streamlit widgets for filters
-    investment_strategy = st.multiselect('Investment Strategy', options=['standard', 'leveraged', 'inverse'], default=st.session_state.investment_strategy)
-    asset_class = st.multiselect('asset_class', options=['equity', 'fixed_income', 'commodities', 'asset_allocation','currency', 'alternatives', 'asset_allocations'], default=st.session_state.asset_class)
-    asset_region = st.multiselect('asset_region', options=['us', 'dev_markets', 'emerg_markets', 'global', 'europe','asia_pacific_wo_brics', 'brics', 'america_wo_us', 'mid_east','africa_wo_brics'], default=st.session_state.asset_region)
-    subsegment = st.multiselect('subsegment', options=['large_cap', 'total_market', 'broad_based', 'mid_cap', 'small_cap','not_specified', 'high_dividend_yield', 'government', 'corporate','extended_market', 'other', 'low carbon', 'industry_and_tech'], default=st.session_state.subsegment)
-    esg_rating = st.multiselect('esg_rating', options=['AAA', 'AA', 'A', 'BBB', 'BB', 'B', 'CCC', 'CC', 'C'], default=st.session_state.esg_rating)
+    '''
+    Step 2: Create Streamlit widgets for filters
+    #investment_strategy = st.multiselect('Investment Strategy', options=['standard', 'leveraged', 'inverse'], default=st.session_state.investment_strategy)
+    #asset_class = st.multiselect('asset_class', options=['equity', 'fixed_income', 'commodities', 'asset_allocation','currency', 'alternatives', 'asset_allocations'], default=st.session_state.asset_class)
+    #asset_region = st.multiselect('asset_region', options=['us', 'dev_markets', 'emerg_markets', 'global', 'europe','asia_pacific_wo_brics', 'brics', 'america_wo_us', 'mid_east','africa_wo_brics'], default=st.session_state.asset_region)
+    #subsegment = st.multiselect('subsegment', options=['large_cap', 'total_market', 'broad_based', 'mid_cap', 'small_cap','not_specified', 'high_dividend_yield', 'government', 'corporate','extended_market', 'other', 'low carbon', 'industry_and_tech'], default=st.session_state.subsegment)
+    #esg_rating = st.multiselect('esg_rating', options=['AAA', 'AA', 'A', 'BBB', 'BB', 'B', 'CCC', 'CC', 'C'], default=st.session_state.esg_rating)
    
     # Step 3: Define the callback function to update session state
     def on_change():
@@ -146,4 +144,4 @@ def app():
         else:
             df_filtered = df_target.query(query_str)
 
-      
+      '''
