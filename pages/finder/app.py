@@ -2,29 +2,70 @@ import streamlit as st
 import ipywidgets
 import streamlit_elements
 import pandas as pd
-import matplotlib as mpl
-from matplotlib import pyplot as plt
-import seaborn as sns
+import numpy as np
+import datetime
+from time import sleep
+import yfinance as yf
+import plotly.graph_objs as go
+import plotly.express as px
 
 
 def app():
+    
+    def get_ticker():
+        ticker = []
+        for i in range(len(df['ticker'])):
+            try:
+                tick = yf.Ticker(df['ticker'][i])
+                ticker.append(tick)
+            except:
+                pass
+        return ticker
+
+    
+    ticker = get_ticker()
+
+    def get_info(ticker):
+        info = []
+        for i in range(len(ticker)):
+            try:
+                info.append(ticker[i].info)
+            except:
+                sleep(.01)
+                pass
+    return info
+
+    '''
+    
+    
+    '''
     try:
         df = pd.read_csv('database.csv')
     except FileNotFoundError:
         st.error("Error: CSV file not found. Please check the file path.")
         df = pd.DataFrame()
+   
     
     # Step 0: Define filter_set
     filter_set = df[['investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]
     df_target = df[['ticker', 'investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]    
     df_filtered = df_target
+
+ '''
+
     
     st.title("ETF Finder")
     st.markdown('### __This is the ETF Finder Page__ ')   
     st.markdown(f'### __set the filters to select your ETFs__ ')
     st.markdown('__Note: all ETFs provide data on every filter. The number of ETFs that provide data on a specific filter is shown in this barplot__') 
     
+  
+    options = []
+    for i in get_tickers():
+        options.append(i)
 
+    
+    select = st.multiselect('choose ETF', options = options)
 
     # Step 1: Initialize session state for filters if not already present
     
