@@ -15,6 +15,7 @@ st.set_page_config(
     page_icon=':chart_with_upwards_trend:',
     layout="wide",
     initial_sidebar_state="expanded")
+
 class MultiApp:
     def __init__(self):
         self.apps = {
@@ -46,5 +47,5 @@ class MultiApp:
             st.error("Page not found")
 
     if __name__ == "__main__":
-    app = MultiApp()
-    app.run()
+        app = MultiApp()
+        app.run()
