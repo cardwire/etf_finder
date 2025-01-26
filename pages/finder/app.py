@@ -57,15 +57,6 @@ def app():
                     "topHolds" = etf.get_funds_data().top_holdings   
                 }
 
-
-  # Step 0: Define filter_set
-    investment_strategy =
-    filter_set = df[['investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]
-    df_target = df[['ticker', 'investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]    
-    df_filtered = df_target
-
-
-
         
         # Display information and visualizations
         for ticker, data in etf_data.items():
