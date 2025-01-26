@@ -45,6 +45,6 @@ class MultiApp:
         else:
             st.error("Page not found")
 
-if __name__ == "__main__":
+    if __name__ == "__main__":
     app = MultiApp()
     app.run()
