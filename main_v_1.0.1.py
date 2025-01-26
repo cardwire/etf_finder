@@ -41,10 +41,10 @@ class MultiApp:
                     "nav-link-selected": {"background-color": "#8F00FF", "font-size": "20px"}
                 }
             )
-        if app in self.apps:
-            self.apps[app].app()  # Call the selected page's app function
-        else:
-            st.error("Page not found")
+    if app in self.apps:
+        self.apps[app].app()  # Call the selected page's app function
+    else:
+        st.error("Page not found")
 
     if __name__ == "__main__":
         app = MultiApp()
