@@ -38,7 +38,7 @@ def app():
     if st.sidebar.button("Fetch Data"):
         st.markdown(f"Fetching data for: {', '.join(ticker_list)}")
 
-        etf_data = {}
+    etf_data = {}
         for ticker in ticker_list:
             etf = fetch_etf_data(ticker)
             if etf:
@@ -54,47 +54,27 @@ def app():
                     "fundDescription" = etf.get_funds_data().description
                     "eqHold" = etf.get_funds_data().equity_holdings
                     "secWeights" = etf.get_funds_data().sector_weightings
-                    "topHolds" = etf.get_funds_data().top_holdings   
+                    "topHolds" = etf.get_funds_data().top_holdings
                 }
 
         
         # Display information and visualizations
-for ticker, data in etf_data.items():
-    st.subheader(f"{ticker} Information")
-    st.write(data["info"])
-
-    st.subheader(f"{ticker} Price Chart (1-Year)")
+    for ticker, data in etf_data.items():
+        st.subheader(f"{ticker} Information")
+        st.write(data["info"])
+        st.subheader(f"{ticker} Price Chart (1-Year)")
+    
     if not data["history"].empty:
         fig = px.line(data["history"].reset_index(),
                       x="Date",
                       y="Close",
                       title=f"{ticker} Closing Prices"
-                )
-                
-        st.plotly_chart(fig)
-            else:
-                st.warning(f"No historical data available for {ticker}.")
-
-            try:
-                df = pd.read_csv('database.csv')
-            except FileNotFoundError:
-                st.error("Error: CSV file not found. Please check the file path.")
-                df = pd.DataFrame()
-   
-    
-
-
-    
-  #  st.title("ETF Finder")
-   # st.markdown('### __This is the ETF Finder Page__ ')   
-   # st.markdown(f'### __set the filters to select your ETFs__ ')
-    #st.markdown('__Note: all ETFs provide data on every filter. The number of ETFs that provide data on a specific filter is shown in this barplot__') 
-    
-  
-
+                     )
+                    st.plotly_chart(fig)
+    else:
+        st.warning(f"No historical data available for {ticker}.")
 
    
-
     # Step 1: Initialize session state for filters if not already present
     
     if 'investment_strategy' not in st.session_state:
@@ -140,52 +120,30 @@ for ticker, data in etf_data.items():
         if st.session_state.investment_strategy:
             query_str += f"(investment_strategy in {st.session_state.investment_strategy})"
 
-            if st.session_state.asset_class:
-                if query_str:
-                    query_str += " and "
+        if st.session_state.asset_class:
+            if query_str:
+                query_str += " and "
                 query_str += f"(asset_class in {st.session_state.asset_class})"
 
-            if st.session_state.asset_region:
-                if query_str:
-                    query_str += " and "
+        if st.session_state.asset_region:
+            if query_str:
+                query_str += " and "
                 query_str += f"(asset_region in {st.session_state.asset_region})"
 
-            if st.session_state.subsegment:
-                if query_str:
-                    query_str += " and "
+        if st.session_state.subsegment:
+            if query_str:
+                query_str += " and "
                 query_str += f"(subsegment in {st.session_state.subsegment})"
 
-            if st.session_state.esg_rating:
-                if query_str:
-                    query_str += " and "
+        if st.session_state.esg_rating:
+            if query_str:
+                query_str += " and "
                 query_str += f"(esg_rating in {st.session_state.esg_rating})"
             
-            
-            
-
-        
 
         if query_str == "":
             df_filtered = df_target
         else:
             df_filtered = df_target.query(query_str)
 
-        # Display the count of unique tickers and the list of tickers
-        n = df_filtered['ticker'].count()  # Use the total count from unfiltered data
-        st.title(f"You selected: {n} ETFs")
-        st.write("List of tickers:")
-        List = df_filtered['ticker'].tolist()
-        st.write('Here is a ticker list of your selection')
-        st.write(List)
-        
-        st.session_state.query_str = query_str
-        st.session_state.df_filtered = df_filtered
-        
-
-        
-    st.divider()
-
-    # Use the filtered_df for further processing or display
-    st.write("Your Selection:")
-    st.write(df_filtered.head())
-    
+      
