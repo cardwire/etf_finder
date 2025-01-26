@@ -37,6 +37,4 @@ def app():
     
     st.divider()
     
-    
-app()
-        
+
