@@ -36,7 +36,7 @@ def app():
  # Fetch information for each ETF
     st.sidebar.write("Click the button below to fetch ETF data.")
     if st.sidebar.button("Fetch Data"):
-        st.write(f"Fetching data for: {', '.join(ticker_list)}", size = 16)
+        st.markdown(f"# Fetching data for: {', '.join(ticker_list)}")
 
         etf_data = {}
         for ticker in ticker_list:
