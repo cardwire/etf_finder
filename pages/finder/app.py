@@ -38,7 +38,7 @@ def app():
     '''
     
     
-    '''
+
     try:
         df = pd.read_csv('database.csv')
     except FileNotFoundError:
@@ -51,7 +51,7 @@ def app():
     df_target = df[['ticker', 'investment_strategy', 'asset_class', 'asset_region', 'subsegment', 'esg_rating']]    
     df_filtered = df_target
 
- '''
+     '''
 
     
     st.title("ETF Finder")
