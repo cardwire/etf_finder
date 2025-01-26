@@ -11,6 +11,17 @@ import plotly.express as px
 
 
 def app():
+
+    st.title("ETF Data Visualization App")
+    st.write("Analyze and visualize ETF data with this interactive tool!")
+
+    # Sidebar for user inputs
+    st.sidebar.header("Input ETF Tickers")
+    tickers = st.sidebar.text_area("Enter ETF tickers (comma-separated):", "SPY, QQQ, DIA")
+    
+    # Convert user input to a list of tickers
+    ticker_list = [ticker.strip() for ticker in tickers.split(",")]
+
     
     def get_ticker():
         ticker = []
@@ -23,7 +34,7 @@ def app():
         return ticker
 
     
-    ticker = get_ticker()
+
 
     def get_info(ticker):
         info = []
@@ -54,18 +65,51 @@ def app():
      '''
 
     
-    st.title("ETF Finder")
-    st.markdown('### __This is the ETF Finder Page__ ')   
-    st.markdown(f'### __set the filters to select your ETFs__ ')
-    st.markdown('__Note: all ETFs provide data on every filter. The number of ETFs that provide data on a specific filter is shown in this barplot__') 
+  #  st.title("ETF Finder")
+   # st.markdown('### __This is the ETF Finder Page__ ')   
+   # st.markdown(f'### __set the filters to select your ETFs__ ')
+    #st.markdown('__Note: all ETFs provide data on every filter. The number of ETFs that provide data on a specific filter is shown in this barplot__') 
     
   
-    options = []
-    for i in get_tickers():
-        options.append(i)
+      # Function to fetch data for each ticker
+    def fetch_etf_data(ticker):
+        try:
+            data = yf.Ticker(ticker)
+            return data
+        except Exception as e:
+            st.error(f"Error fetching data for {ticker}: {e}")
+            return None
 
-    
-    select = st.multiselect('choose ETF', options = options)
+    # Fetch information for each ETF
+    st.sidebar.write("Click the button below to fetch ETF data.")
+    if st.sidebar.button("Fetch Data"):
+        st.write(f"Fetching data for: {', '.join(ticker_list)}")
+
+        etf_data = {}
+        for ticker in ticker_list:
+            etf = fetch_etf_data(ticker)
+            if etf:
+                etf_data[ticker] = {
+                    "info": etf.info,
+                    "history": etf.history(period="1y"),
+                }
+        
+        # Display information and visualizations
+        for ticker, data in etf_data.items():
+            st.subheader(f"{ticker} Information")
+            st.write(data["info"])
+
+            st.subheader(f"{ticker} Price Chart (1-Year)")
+            if not data["history"].empty:
+                fig = px.line(
+                    data["history"].reset_index(),
+                    x="Date",
+                    y="Close",
+                    title=f"{ticker} Closing Prices",
+                )
+                st.plotly_chart(fig)
+            else:
+                st.warning(f"No historical data available for {ticker}.")
 
     # Step 1: Initialize session state for filters if not already present
     
