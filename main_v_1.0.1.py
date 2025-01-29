@@ -16,8 +16,8 @@ from streamlit_option_menu import option_menu
 try:
     import pages.home.app
     import pages.finder.app
-    import pages.visualization.app
-    import pages.database.app
+    #import pages.visualization.app
+   # import pages.database.app
     # import pages.forecast.app  # Uncomment if forecast page is available
 except ModuleNotFoundError as e:
     st.error(f"Module not found: {e.name}. Please check if the page file exists in the 'pages' folder.")
