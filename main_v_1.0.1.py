@@ -1,13 +1,30 @@
 # Main file of the App
+
+
 import streamlit as st
-import streamlit_option_menu
-from streamlit_option_menu import option_menu
-from streamlit_elements import elements, mui, html
-import pages.home.app
-import pages.finder.app
-import pages.visualization.app
-import pages.database.app
-import pages.forecast.app
+from packaging import version
+import streamlit as st
+import yfinance as yf
+import plotly.express as px
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
+from datetime import timedelta
+
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), r'C:\\Users\\krist\\Documents\\VS Code\\st_app_v2\\ETF_Analizer', 'pages')))
+
+try:
+    import pages.home.app
+    import pages.finder.app
+    import pages.visualization.app
+    # import pages.forecast.app
+except ModuleNotFoundError as e:
+    st.error(f"Module not found: {e.name}")
 
 
 st.set_page_config(
@@ -23,7 +40,7 @@ class MultiApp:
             'finder': pages.finder.app,
             'visualization': pages.visualization.app,
             'database': pages.database.app,
-            'forecast': pages.forecast.app
+            # 'forecast': pages.forecast.app
         }
 
     def run(self):
@@ -41,11 +58,13 @@ class MultiApp:
                     "nav-link-selected": {"background-color": "#8F00FF", "font-size": "20px"}
                 }
             )
-    if app in self.apps:
-        self.apps[app].app()  # Call the selected page's app function
-    else:
-        st.error("Page not found")
+        if app in self.apps:
+            self.apps[app].app()  # Call the selected page's app function
+        else:
+            st.error("Page not found")
 
-    if __name__ == "__main__":
-        app = MultiApp()
-        app.run()
+if __name__ == "__main__":
+
+    app = MultiApp()
+    app.run()
+
