@@ -14,10 +14,6 @@ from datetime import datetime
 from datetime import timedelta
 
 
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), r'C:\\Users\\krist\\Documents\\VS Code\\st_app_v2\\ETF_Analizer', 'pages')))
-
 try:
     import pages.home.app
     import pages.finder.app
